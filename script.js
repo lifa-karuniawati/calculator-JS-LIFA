@@ -1,110 +1,113 @@
+
+// mendefinisikan penampil dan element yang diambil
 const calculatorScreen = document.querySelector('.calculator-screen')
-
-const updateScreen = (number) => {
-    calculatorScreen.value = number
-}
-
 const numbers = document.querySelectorAll(".number")
 
-numbers.forEach(number) => {
-    number.addEventListener("click", (event) => {
-        updateScreen(event.target.value)
-    })    
+//menambahkan event click ke setiap element dan menjalankan function updateScreen
+
+const updateScreen = (number) => {
+    calculatorScreen.value = number // mengisi nilai penampilnya dengan variabel number
+    
+}
+
+numbers.forEach((number)=>{ // mengambil setiap nilai numbernya 
+    number.addEventListener('click', (event) => { //menambahkan event click
+        updateScreen(event.target.value) //menambahkan nilai dari target event
+    })
 })
 
-let prevNumber = ''
-let calculatorOperator = ''
-let currentNumber ='0'
 
-const inputNumber = (number) => {
-    currentNumber = number
-}
+//mendefinisikan PrevNumber, currentNumber, calculationOperator
+let prevNumber=''
+let currentNumber='0'
+let calculationOperator=''
+
+const inputNumber = ((number) => {
+    if (currentNumber === '0') {
+        currentNumber = number
+    }
+    else{
+        currentNumber += number
+    }
+})
+
 numbers.forEach((number) => {
-    number.addEventListener("click", (event) => {
+    number.addEventListener('click', (event) => {
         inputNumber(event.target.value)
         updateScreen(currentNumber)
     })
 })
 
-const inputNumber = (number) => {
-    currentNumber += number
-}
-const inputNumber = (number) => {
-    if (currentNumber === '0') {
-        currentNumber = number
-    } else {
-        currentNumber += number
-    }
-}
+// ini adalah bagian operator aritmatikanya
 
-const inputOperator = (operator) => {
+const inputOperator = ((operator)=>{
     if (calculationOperator === '') {
         prevNumber = currentNumber
-    } 
-    calculatorOperator = operator
+    }
+    calculationOperator = operator
     currentNumber = '0'
-}
+})
 
-const operator = document.querySelectorAll(".operator")
-
+const operators = document.querySelectorAll(".operator")
 operators.forEach((operator) => {
-    operator.addEventListener("click", (event) => {
+    operator.addEventListener('click', (event) => {
         inputOperator(event.target.value)
     })
 })
 
 const equalSign = document.querySelector('.equal-sign')
-
-equalSign.addEventListener('click', () => {
+equalSign.addEventListener('click', (event) => {
     calculate()
     updateScreen(currentNumber)
 })
 
 const calculate = () => {
-    let result = ''
-    switch(calculationOperator) {
-        case "+":
+    switch (calculationOperator) {
+        case '+':
             result = parseFloat(prevNumber) + parseFloat(currentNumber)
-            break
-        case "-":
-            result = parseInt(prevNumber) - parseInt(currentNumber)
-            break
-        case "*":
-            result = parseInt(prevNumber) * parseInt(currentNumber)
-            break
-        case "/":
-            result = parseInt(prevNumber) / parseInt(currentNumber)
-            break
+            break;
+        case '-':
+            result = parseFloat(prevNumber) - parseFloat(currentNumber)
+            break;
+        case '*':
+            result = parseFloat(prevNumber) * parseFloat(currentNumber)
+            break;
+        case '/':
+            result = parseFloat(prevNumber) / parseFloat(currentNumber)
+            break;
+        case '%':
+            result = 100 / parseFloat(currentNumber) * parseFloat(prevNumber) + '%'
+        break;
+        
         default:
-            break
+            return
     }
+    
     currentNumber = result
-    calculatorOperator = ''
+    calculationOperator = ''
 }
 
-const clearBtn = document.querySelector('.all-clear')
-
+const clearBtn = document.querySelector(".all-clear")
 clearBtn.addEventListener('click', () => {
     clearAll()
     updateScreen(currentNumber)
 })
 
-const clearAll = () => {
+clearAll = () => {
     prevNumber = ''
     calculationOperator = ''
     currentNumber = '0'
 }
 
-const decimal = document.querySelector('.decimal')
+inputDecimal = (dot) => {
+    if(currentNumber.includes('.')){
+        return
+    }
+    currentNumber += '.'
+}
 
+const decimal = document.querySelector('.decimal')
 decimal.addEventListener('click', (event) => {
     inputDecimal(event.target.value)
     updateScreen(currentNumber)
 })
-
-inputDecimal = (dot) => {
-    if (currentNumber.includes('.')) {
-        return
-    }
-    currentNumber += dot
-}
