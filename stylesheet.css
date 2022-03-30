@@ -5,7 +5,7 @@
     width: 400px;
   }
   .calculator-screen {
-    width: 100%;
+    width: 100px;
     height: 100px;
     background-color: #252525;
     color: #fff;
@@ -38,7 +38,7 @@
   
   .operator,
   .equal-sign {
-    background-color: blue;
+    background-color: green;
   }
   
   button:hover {
