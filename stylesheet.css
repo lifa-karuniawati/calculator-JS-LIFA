@@ -16,7 +16,7 @@
     box-sizing: border-box;
   }
   .calculator-keys {
-    display : flex;
+    display : grid;
   }
   .row {
     display: flex;
