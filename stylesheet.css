@@ -9,18 +9,22 @@
     --smallFont: 600 12px arial, sans-serif;
     --mediumFont: 500 14px arial, sans-serif;
     --bigFont: 600 28px arial, sans-serif;
-    --bodyBgColor: #e2e2e2;
+    --bodyBgColor: #201313;
     --calcBgColor: #dbdbdb;
     --btnBgColor: #d1d1d1;
+    --operatorColor: #969e96b4;
+    --equalColor : #447ce4;
+    --biruColor : #8cadf0;
     --lightColor: #e6e6e6;
     --greyColor: grey;
   }
   
   /* dark mode */
   :root.dark{
-    --bodyBgColor: #6d6d6d;
-    --calcBgColor: #353535;
-    --btnBgColor: #aaaaaa;
+    --bodyBgColor: #5c2424;
+    --calcBgColor: #b851a6;
+    --btnBgColor: #aaaa;
+    --operatorBgColor: #f3a0e5;
     --lightColor: #cacaca;
     --greyColor: dimgrey;
   }
@@ -121,7 +125,7 @@
   }
   
   /* buttons and labels */
-  .btn, .lbl{
+  .btn, .lbl, .operator, .equal{
     font: var(--mediumFont);
     border-radius: 2px;
     border: none;
@@ -136,10 +140,30 @@
     box-shadow: 0px 2px 3px var(--greyColor);
   }
   
+  .operator{
+    height: 26px;
+    background-color: var(--operatorColor);
+    box-shadow: 0px 2px 3px var(--greyColor);
+  }
+
+  .equal{
+    height: 26px;
+    background-color: var(--equalColor);
+    box-shadow: 0px 2px 3px var(--greyColor);
+  }
+
   .btn:hover{
     background-color: var(--lightColor);
   }
   
+  .operator:hover{
+    background-color: var(--lightColor);
+  }
+  
+  .equal:hover{
+    background-color: var(--biruColor);
+  }
+
   .btn:active, .lbl:active{
     box-shadow: 0px 0px 4px var(--greyColor);
   }
@@ -174,28 +198,9 @@
     grid-column: span 2;
   }
   
-  /* footer section */
-  footer{
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-    font: 500 12px arial, sans-serif ;
-    color: darkslategray;
-    text-align: center;
-    padding: 5px 0px;
-  }
   
-  /* footer link */
-  footer a{
-    text-decoration: none;
-    color: crimson;
-  }
   
-  footer a:hover{
-    color: coral;
-  }
-  
-  /* --------------------------------------------- */
+   /* --------------------------------------------- */
   @media(min-width: 768px){
   
     :root{
@@ -229,4 +234,9 @@
     .lbl{
       line-height: 30px;
     }
+  }
+
+  h5{
+      color: rgb(32, 29, 29);
+      text-align: center;
   }
