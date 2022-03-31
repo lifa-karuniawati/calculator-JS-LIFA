@@ -62,7 +62,9 @@ for (let i = 0; i < numBtn.length; i++) {
       inputBox.value += 'log'
     } else if (numBtn[i].value === 'x') {
       inputBox.value += '*'
-    } else {
+    }  else if (numBtn[i].value === 'x') {
+        inputBox.value += 'persen'
+    }else {
       inputBox.value += numBtn[i].value
     }
   })
@@ -115,10 +117,10 @@ sqrBtn.addEventListener('click', () => {
   }
 })
 
-// persen button
-persenBtn.addEventListener('click', () => {
+//tombol persen
+persenBtn.addEventListener('click', (event) => {
   if (inputBox.value) {
-    inputBox.value = Math.round(inputBox.value, 100)
+    inputBox.value = Math.round(inputBox.value)
   }
 })
 
